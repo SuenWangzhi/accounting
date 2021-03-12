@@ -1,7 +1,8 @@
 <template>
     <div>
-Chart
-<Nav/>
+<Layout>
+       Chart
+      </Layout>
     </div>
 </template>
 

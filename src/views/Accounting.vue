@@ -1,7 +1,8 @@
 <template>
     <div>
-Accounting
-<Nav/>
+<Layout>
+        Accounting
+      </Layout>
     </div>
 </template>
 
