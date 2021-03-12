@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Bill from '@/views/Bill.vue'
 import Accounting from '@/views/Accounting.vue'
 import Chart from '@/views/Chart.vue'
+import NotFound from '@/views/NotFound.vue'
 Vue.use(VueRouter)
 const routes = [
   {
@@ -20,6 +21,10 @@ const routes = [
   {
     path: '/chart',
     component: Chart
+  },
+  {
+    path: '*',
+    component: NotFound
   }
 ]
 const router = new VueRouter({
