@@ -1,4 +1,4 @@
-# acounting
+# accounting
 
 ## Project setup
 ```
