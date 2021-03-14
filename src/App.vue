@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-
+document.body.parentNode.style.overflow = "hidden";//隐藏窗口滚动条
 </script>
 
 <style lang="scss">
@@ -20,5 +20,9 @@ body{
 a{
   text-decoration: none;
   color:inherit;
+}
+#app{
+  max-width: 460px;
+  margin: 0 auto;
 }
 </style>
