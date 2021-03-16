@@ -12,6 +12,7 @@ export default class Types extends Vue{
     type= '-'
     selectType(type:string){
         this.type=type
+        this.$emit('updataType', this.type)
     }
 }
 </script>

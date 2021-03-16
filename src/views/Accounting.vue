@@ -2,65 +2,55 @@
     <div>
         <header class="header">
             <a href="#/bill" class="back">ab</a>
-            <Types/>
+            <Types @updataType="onUpdataType"/>
         </header>
-        <div class="count">
-        <div class="count-left">
-          <icon iconid="daily"/><span class="type">日常</span>
-        </div> 
-        <span id="countmony">100.00</span>
-        </div>
-        <ul class="itemwrapper">
-          <li>
-            <icon iconid="daily"/>
-            <div>日常</div>
-          </li>
-          <li>
-            <icon iconid="restaurant"/>
-            <div>餐饮</div>
-          </li>
-          <li>
-            <icon iconid="shopping"/>
-            <div>购物</div>
-          </li>
-          <li>
-            <icon iconid="traffic"/>
-            <div>交通</div>
-          </li>
-          <li>
-            <icon iconid="entertainment"/>
-            <div>娱乐</div>
-          </li>
-          <li>
-            <icon iconid="learn"/>
-            <div>学习</div>
-          </li>
-          <li>
-            <icon iconid="sport"/>
-            <div>运动</div>
-          </li>
-          <li>
-            <icon iconid="house"/>
-            <div>住房</div>
-          </li>
-          <li>
-            <icon iconid="watele"/>
-            <div>水电网</div>
-          </li>
-          <li>
-            <icon iconid="medical"/>
-            <div>医药</div>
-          </li>
-        </ul>
-        <NumberPad/>
+        {{record}}
+        <Tags :data-source.sync="tags" @selected="onSelected"/>
+        <NumberPad  @updataAmount="onUpdataAmoun"/>
     </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
+import {Component, Prop, Vue} from 'vue-property-decorator'
 import NumberPad from "@/components/NumberPad.vue"
-export default {
-  components: { NumberPad },
-  name: 'Accounting'
+import Tags from "@/components/Tags.vue"
+// type Record={
+//   type:String
+//   reamrks:String
+//   amount:,
+//   tags:[]
+// }
+@Component({
+  components:{Tags,NumberPad}
+})
+export default class Accounting extends Vue{
+    tags= [{icon:"daily",word:"日常"},
+    {icon:"restaurant",word:"餐饮"},
+    {icon:"shopping",word:"购物"},
+    {icon:"traffic",word:"交通"},
+    {icon:"entertainment",word:"娱乐"},
+    {icon:"learn",word:"学习"},
+    {icon:"sport",word:"运动"},
+    {icon:"house",word:"住房"},
+    {icon:"watele",word:"水电网"},
+    {icon:"medical",word:"医药"}
+]
+record = {
+  icon:"daily",word:"日常",type:"-",amount:0,remarks:""
+}
+onSelected(tag: {icon: string,word: string}){
+  console.log(tag)
+  this.record.icon=tag.icon
+  this.record.word=tag.word
+}
+onUpdataType(type: string){
+  this.record.type=type
+}
+onUpdataAmoun(remount:{remarks:string,amount: number}){
+  this.record.amount=remount.amount
+  this.record.remarks=remount.remarks
+}  
+  
 }
 </script>
 
@@ -76,34 +66,4 @@ export default {
     left: 20px;
   }
 }
-.count{
-  display: flex;
-  padding:2px 18px ;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 32px;
-  height: 56px;
-  border-bottom: solid 1px #f3f3f3;
-  .icon{
-    vertical-align:middle;
-  }
-  .type{
-    font-size: 16px;
-    margin-left:12px;
-  }
-}
-.itemwrapper{
-    display: flex;
-    flex-wrap: wrap;
-    li{
-      width: 20%;
-      text-align: center;
-      list-style: none;
-      padding-top: 12px;
-      font-size: 12px;
-      .icon{
-        font-size: 42px;
-      }
-    }
-  }
 </style>

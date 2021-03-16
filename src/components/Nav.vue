@@ -14,9 +14,6 @@
 
 <script lang="ts">
 
-import x from '@/assets/icons/bill.svg'
-console.log("aaaa"+x)
-
 export default {
   data(){
     return {

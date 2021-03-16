@@ -1,7 +1,6 @@
 <template>
     <div class="numberPad">
 <div class="output">
-    <div class="output">aa:{{output}}</div>
     <label for="remarks">备注：</label>
     <input id="remarks" v-model="value" placeholder="输入备注信息" type="text"/>
 </div>
@@ -30,11 +29,7 @@ import {Component, Prop, Vue} from 'vue-property-decorator'
 export default class NumberPad extends Vue{
     output = '0';
     value = ''
-    onInput(event:KeyboardEvent){
-      const input = event.target as HTMLElement;
-      this.value = input.value
-    }
-    inputContent(event: MouseEvent) {
+    inputContent(event: MouseEvent): void {
       const button = (event.target as HTMLButtonElement);
       const input = button.textContent!;
       if (this.output.length === 16){ return; }
@@ -44,11 +39,12 @@ export default class NumberPad extends Vue{
         } else {
           this.output += input;
         }
+      //  this.$emit('updataAmount', this.output)
         return;
       }
       if (this.output.indexOf('.') >= 0 && input === '.') {return;}
       this.output += input;
-      console.log(this.output)
+    //  this.$emit('updataAmount', this.output)
     }
      remove() {
       if (this.output.length === 1) {
@@ -56,20 +52,20 @@ export default class NumberPad extends Vue{
       } else {
         this.output = this.output.slice(0, -1);
       }
+    //  this.$emit('updataAmount', this.output)
     }
 
     clear() {
       this.output = '0';
+     // this.$emit('updataAmount', this.output)
     }
 
     ok() {
       const number = parseFloat(this.output);
-      this.$emit('update:value', number);
-      this.$emit('submit', number);
-      this.output = '0';
+      const amount = {remarks:this.value,amount:number}
+      this.$emit('updataAmount', amount )
     }
 }
-</script>
 </script>
 
 <style lang="scss" scoped>
@@ -103,6 +99,12 @@ export default class NumberPad extends Vue{
       #remarks{
         font-size:16px;
         height: 30px;
+      }
+      input{
+        border: none;
+        border-bottom: 1px solid #a6c1ee;
+        outline:medium;
+        background:#D1C2ED;
       }
     }
     .buttons {
