@@ -23,13 +23,13 @@ export default class Types extends Vue{
     width: 60%;
     background-color: #81A4DE;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
-    margin:0 auto;
+    margin:0 20%;
     border-radius: 6px;
     .changitem{
-      width: 48%;
-      border-radius: 7px;
+      width: 47%;
+      border-radius: 6px;
       height: 24px;
     }
     .selected.changitem{

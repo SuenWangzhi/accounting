@@ -1,10 +1,11 @@
 <template>
     <div>
         <header class="header">
-            <a href="#/bill" class="back">ab</a>
+            <a href="#/bill" class="back">
+              <Icon iconid="back"/>
+            </a>
             <Types @updataType="onUpdataType"/>
         </header>
-        {{record}}
         <Tags :data-source.sync="tags" @selected="onSelected"/>
         <NumberPad  @updataAmount="onUpdataAmoun"/>
     </div>
@@ -38,6 +39,7 @@ export default class Accounting extends Vue{
 record = {
   icon:"daily",word:"日常",type:"-",amount:0,remarks:""
 }
+recordList = JSON.parse(window.localStorage.getItem("recordList")||'[]')
 onSelected(tag: {icon: string,word: string}){
   console.log(tag)
   this.record.icon=tag.icon
@@ -49,7 +51,12 @@ onUpdataType(type: string){
 onUpdataAmoun(remount:{remarks:string,amount: number}){
   this.record.amount=remount.amount
   this.record.remarks=remount.remarks
-}  
+  const recard2 = JSON.stringify(this.record)
+    console.log(this.recordList)
+  this.recordList.push(recard2)
+  window.localStorage.setItem("recordList",JSON.stringify(this.recordList))
+  console.log(this.recordList)
+} 
   
 }
 </script>
@@ -62,8 +69,9 @@ onUpdataAmoun(remount:{remarks:string,amount: number}){
   text-align: center;
   padding:12px 0;
   .back{
-    position: absolute;
-    left: 20px;
+    float: left;
+    margin:-8px 12px ;
+    font-size: 30px;
   }
 }
 </style>

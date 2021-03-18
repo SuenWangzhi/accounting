@@ -1,14 +1,15 @@
 <template>
     <div>
 <Layout>
-       Chart
+       <Business/>
       </Layout>
     </div>
 </template>
 
 <script lang='ts'>
+import Business from "@/components/Business.vue"
 export default {
-  name: 'Chart'
+  components: { Business },
 }
 </script>
 

@@ -1,9 +1,9 @@
 <template>
     <div class="nav-wrapper">
-<div class="content">
-    <slot/>
-</div>
-<Nav/>
+        <div class="content">
+            <slot/>
+        </div>
+        <Nav/>
     </div>
 </template>
 
@@ -15,12 +15,11 @@ export default {
 
 <style lang="scss" scoped>
 .nav-wrapper{
-    display:flex;
     height: 100vh;
-    flex-direction: column;
-}
 .content{
-    flex-grow: 1;
+    height: calc(100vh - 56px);
     overflow: auto;
 }
+}
+
 </style>
